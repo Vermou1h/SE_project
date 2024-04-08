@@ -1,0 +1,27 @@
+#:kivy 2.0
+
+<IntroScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: '欢迎使用数学练习软件'
+        Button:
+            text: '开始'
+            on_release: root.manager.current = 'grade_selection'
+
+<GradeSelectionScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: '请选择你的年级'
+        Spinner:
+            id: grade_spinner
+            text: '选择你的年级'
+            values: ['一年级上','一年级下','二年级上', '二年级下', '三年级上', '三年级下', '四年级上', '四年级下', '五年级上', '五年级下', '六年级上', '六年级下', ]
+        Button:
+            text: '确定'
+            on_release:
+                app.handle_grade_selection(grade_spinner.text)
+                # 可以在这里根据选择的年级设置练习屏幕的参数
+
+
