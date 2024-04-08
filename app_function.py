@@ -71,7 +71,7 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             num2 = random.randint(1, 100)
             operator = random.choice(['+', '-'])
             problems.append(ArithmeticProblem(num1, num2, operator))
-    elif grade == max_decimal_places:
+    elif grade == 3:
         # 二年级上
         for _ in range(y):
             num1 = random.randint(1, 100)
