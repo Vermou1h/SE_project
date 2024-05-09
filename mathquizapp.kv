@@ -1,22 +1,308 @@
 #:kivy 2.0
+<DevelopmentScreen>:
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+        color: 1, 1, 1, 0.5  # 轻微透明的白色遮罩
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: '(此功能即将开发完成)'
+            font_size: '24sp'
+            size_hint: (1, 0.9)
+        Button:
+            text: '请选择打印格式'
+            size_hint: (1, 0.1)
+
+        Button:
+            text: '确认打印！'
+            size_hint: (1, 0.1)
+
+        Button:
+            text: '返回'
+            size_hint: (1, 0.1)
+            on_press: app.root.current = 'exercise'
+
+<LoginScreen>:
+    Image:
+        source: 'bg.png'
+        allow_stretch: True
+        keep_ratio: False
+        color: 1, 1, 1, 0.5  # 轻微透明的白色遮罩
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: (None, None)
+        padding: [10, 0, 10, 10]  # 左上右下，上部设置为0确保紧贴顶部
+        size: (300, 600)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+        Label:
+            text: '小学数学算数通'
+            font_size: '50sp'
+            size_hint_y: None
+            height: 500  # 给标题更多的空间
+            size_hint_x: 1
+
+        TextInput:
+            id: username_input
+            hint_text: '用户名'
+            font_size: '25sp'
+            size_hint_y: None
+            height: 80
+            multiline: False
+
+        TextInput:
+            id: password_input
+            hint_text: '密码'
+            font_size: '25sp'
+            password: True
+            size_hint_y: None
+            height: 80
+            multiline: False
+
+        Button:
+            text: '登录'
+            font_size: '25sp'
+            size_hint_y: None
+            height: 80
+            on_press: root.check_credentials()
+
+    Label:
+        text: '(此登录功能即将开发完成，现任意输入用户名与密码即可登录！)'
+        font_size: '25sp'
+        size_hint: (None, None)
+        width: 300
+        height: 200
+        pos_hint: {'center_x': 0.5, 'y': 0.1}
+
+    Label:
+        text: '开发者: 程瑞丰 李濮 李昊睿\n版本: 1.0'
+        font_size: '25sp'
+        size_hint: (None, None)
+        width: 300
+        height: 200
+        pos_hint: {'center_x': 0.5, 'y': 0}
+
 
 <IntroScreen>:
+    FloatLayout:  # 使用 FloatLayout 作为顶级布局
+
+        Image:
+            source: 'bg.png'  # 设置背景图片路径
+            allow_stretch: True  # 允许图片伸缩以填满空间
+            keep_ratio: False  # 不保持图片原始比例
+            color: 1, 1, 1, 0.5
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 1  # 占满整个屏幕的垂直空间
+
+            RelativeLayout:  # 使用 RelativeLayout 以便更灵活地控制位置
+                size_hint_y: 0.75
+
+                Label:
+                    text: '小学数学算数通'
+
+                    font_size: '50sp'
+                    size_hint: (None, None)
+                    width: 300
+                    height: 750
+                    pos_hint: {'center_x': 0.5, 'top': 1}
+
+                Button:
+                    text: '使用说明'
+                    on_release: root.manager.current = 'note'
+                    size_hint: None, None
+                    width: 250
+                    height: 70
+                    pos_hint: {'top': 1, 'x': 0}
+
+                Label:
+                    text: '开发者: 程瑞丰 李濮 李昊睿\n版本: 1.0'
+
+                    font_size: '25sp'
+                    size_hint: (None, None)  # 设置为 None, None 以完全禁用 size_hint
+                    width: 300
+                    height: 200
+                    pos_hint: {'center_x': 0.5, 'y': 0}
+
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.25
+                padding: [10, 5, 10, 5]  # Padding left, top, right, bottom
+                spacing: 10
+
+                Button:
+                    text: '查看错题'
+                    on_release: root.manager.current = 'error_log'
+                    size_hint_x: 0.25
+
+                Button:
+                    text: '开始'
+                    on_release: root.manager.current = 'grade_selection'
+                    size_hint_x: 0.5
+
+                Button:
+                    text: '做题统计'
+                    on_release: root.manager.current = 'stats'
+                    size_hint_x: 0.25
+
+
+
+<NoteScreen>:
+    Image:
+        source: 'bg.png'  # 设置背景图片路径
+        allow_stretch: True  # 允许图片伸缩以填满空间
+        keep_ratio: False  # 不保持图片原始比例
+        color: 1, 1, 1, 0.3
     BoxLayout:
         orientation: 'vertical'
-        Label:
-            text: '欢迎使用数学练习软件'
+        padding: [20, 50, 20, 50]  # 左上右下的内边距
+
+        ScrollView:
+            do_scroll_x: False  # 禁用水平滚动
+            do_scroll_y: True   # 启用垂直滚动
+            padding: [40, 10, 40, 10]  # 增加水平方向的内边距
+
+            Label:
+                text: "\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0欢迎使用我们的算术练习软件！这是一款专为小学生家长设计的辅助工具，旨在帮助孩子们提升数学计算能力，为他们的学习之路添砖加瓦。\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0我们的软件功能丰富，操作简便。首先，您可以根据孩子的实际年级进行选择，以确保题目的难度和内容符合孩子的学习进度。无论是低年级的基础加减法，还是高年级的复杂运算，我们都能为您提供精准的练习题目。\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0在选择好年级后，软件会自动生成30道计算题，让孩子们进行练习。这些题目不仅涵盖了各种运算类型，还注重题目的多样性和趣味性，以激发孩子们的学习兴趣。\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0当孩子们完成题目并填入答案后，系统会自动进行批改，及时给出反馈。您不仅可以了解到孩子的正确率，还能查看每道题的正确答案，帮助孩子更好地理解题目。\n\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0更重要的是，我们的软件还提供了错题记录和做题数据统计功能。错题记录可以帮助孩子们及时回顾自己的错误，避免再次犯错；做题数据统计则能让您更清楚地了解孩子的学习状况和进步情况，为他们制定更合适的学习计划。"
+                text_size: self.width - 40, None  # 减去两边的内边距
+                size_hint_y: None  # 禁用垂直大小提示
+                font_size: '25sp'
+                height: self.texture_size[1]  # 设置高度为文本内容的高度
+                padding_x: 20  # 增加一些水平方向的内边距
+                padding_y: 20  # 增加一些垂直方向的内边距
+                markup: True  # 允许文本标记
+
         Button:
-            text: '开始'
-            on_release: root.manager.current = 'grade_selection'
+            text: '返回'
+            size_hint_y: None
+            height: 50
+            on_release: root.manager.current = 'intro'
+
+
+<ErrorLogScreen>:
+    Image:
+        source: 'bg.png'  # 设置背景图片路径
+        allow_stretch: True  # 允许图片伸缩以填满空间
+        keep_ratio: False  # 不保持图片原始比例
+        color: 1, 1, 1, 0.3
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 10, 10, 10]  # Padding around the layout
+        spacing: 10  # Space between children
+
+        Label:
+            text: '（此功能即将开发完成，功能展示样例如下）'
+            size_hint_y: None
+            height: 50
+            font_size: '18sp'
+        Label:
+            text: '您最近的错题记录已自动导入'
+            size_hint_y: None
+            height: 70
+            font_size: '30sp'
+
+        ScrollView:
+            size_hint_y: 0.8  # Adjusted to accommodate the new label
+            GridLayout:
+                id: problems_grid
+                cols: 2
+                size_hint_y: None
+                height: self.minimum_height  # Height based on content
+        Label:
+            text: '错题都更正完成后，可将错题清空'
+            size_hint_y: None
+            height: 50
+            font_size: '18sp'
+        Button:
+            text: '错题分类'
+            size_hint_y: 0.1
+            on_release:
+                root.show_development_popup()
+        Button:
+            text: '清空错题'
+            size_hint_y: 0.1
+            on_release:
+                root.clear_problems()
+
+        Button:
+            text: '返回'
+            size_hint_y: 0.05
+            on_release: root.manager.current = 'intro'
+
+
+
+<StatsScreen>:
+    Image:
+        source: 'bg.png'  # 设置背景图片路径
+        allow_stretch: True  # 允许图片伸缩以填满空间
+        keep_ratio: False  # 不保持图片原始比例
+        color: 1, 1, 1, 0.3
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 10, 10, 10]
+        spacing: 10
+
+        Label:
+            text: '（此功能即将开发完成，功能展示样例如下）'
+            size_hint_y: None
+            height: 50
+            font_size: '18sp'
+        Label:
+            text: '您最近10次的做题情况统计展示'
+            size_hint_y: None
+            height: 70
+            font_size: '18sp'
+
+        ScrollView:
+            size_hint_y: 0.5
+            GridLayout:
+                id: stats_layout
+                cols: 1
+                size_hint_y: None
+                font_size:'20sp'
+                height: 100
+
+        Graph:
+            id: stats_graph
+            size_hint_y: 0.4
+            xlabel: '答题次数'
+            ylabel: '正确率 (%)'
+            x_ticks_minor: 1
+            x_ticks_major: 1
+            y_ticks_major: 10
+            y_grid_label: True
+            x_grid_label: True
+            padding: 5
+            x_grid: True
+            y_grid: True
+            xmin: 0
+            xmax: 10
+            ymin: 0
+            ymax: 100
+
+        Button:
+            text: '返回'
+            size_hint_y: 0.1
+            on_release: root.manager.current = 'intro'
+
+
 
 <GradeSelectionScreen>:
+    Image:
+        source: 'bg.png'  # 设置背景图片路径
+        allow_stretch: True  # 允许图片伸缩以填满空间
+        keep_ratio: False  # 不保持图片原始比例
+        color: 1, 1, 1, 0.3
     BoxLayout:
         orientation: 'vertical'
         Label:
-            text: '请选择你的年级'
+            text: '请在下面选择你的年级'
         Spinner:
             id: grade_spinner
-            text: '选择你的年级'
+            text: '点击选择'
             values: ['一年级上','一年级下','二年级上', '二年级下', '三年级上', '三年级下', '四年级上', '四年级下', '五年级上', '五年级下', '六年级上', '六年级下', ]
         Button:
             text: '确定'
