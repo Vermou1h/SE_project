@@ -1,9 +1,10 @@
 import random
+import math
 
 class ArithmeticProblem:
     def __init__(self, num1, num2, operator):
-        self.num1 = num1
-        self.num2 = num2
+        self.num1 = round(num1,3)
+        self.num2 = round(num2,3)
         self.operator = operator
         self.answer = self.calculate_answer()
 
@@ -19,8 +20,8 @@ class ArithmeticProblem:
             if self.num2 == 0:
                 self.num2 = random.randint(1, 100)
             # Ensure divisible
-            self.num1 = self.num1 * self.num2
             answer = self.num1 / self.num2
+            answer = round(answer,4)
 
         # Limit decimal places to 2
         return round(answer, 10)
@@ -31,22 +32,22 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
         # 一年级上
         for _ in range(y):
             num1 = random.randint(1, 5)
-            num2 = random.randint(1, 5)
-            operator = '+'
-            problems.append(ArithmeticProblem(num1, num2, operator))
-        for _ in range(y):
-            num1 = random.randint(6, 10)
             num2 = random.randint(6, 10)
             operator = '+'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num1 = random.randint(1, 10)
-            num2 = random.randint(1, 10)
+            num1 = random.randint(6, 10)
+            num2 = random.randint(10, 15)
             operator = '+'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
             num1 = random.randint(1, 10)
-            num2 = random.randint(1, 10)
+            num2 = random.randint(10, 20)
+            operator = '+'
+            problems.append(ArithmeticProblem(num1, num2, operator))
+        for _ in range(y):
+            num1 = random.randint(1, 20)
+            num2 = random.randint(1, 20)
             operator = '+'
             problems.append(ArithmeticProblem(num1, num2, operator))
     elif grade == 2:
@@ -84,7 +85,6 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             num1 = result * num2
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
-        for _ in range(y):
             num1 = random.randint(1, 100)
             num2 = random.randint(1, 10)
             operator = '*'
@@ -113,8 +113,8 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             operator = '*'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num2 = random.randint(1, 10)
-            result = random.randint(1, 100)
+            num2 = random.randint(1, 100)
+            result = random.randint(1, 10)
             num1 = result * num2
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
@@ -136,8 +136,8 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             operator = '*'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num2 = random.randint(1, 9)
-            result = random.randint(10, 100)
+            num2 = random.randint(1, 50)
+            result = random.randint(1, 100)
             num1 = result * num2
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
@@ -159,8 +159,10 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             operator = '*'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num1 = random.randint(1000, 9999)
-            num2 = random.randint(10, 99)
+          #  num1 = random.randint(1000, 9999)
+            num2 = random.randint(1, 100)
+            result = random.randint(1, 50)
+            num1 = result * num2
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
     elif grade == 7:
@@ -171,8 +173,9 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             operator = '*'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num1 = random.randint(100, 999)
-            num2 = random.randint(10, 99)
+            num2 = random.randint(1, 50)
+            result = random.randint(1, 200)
+            num1 = result * num2
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
@@ -181,8 +184,9 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             operator = '*'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num1 = random.randint(100, 999)
-            num2 = random.randint(10, 99)
+            num2 = random.randint(1, 50)
+            result = random.randint(1, 200)
+            num1 = result * num2
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
     elif grade == 8:
@@ -203,8 +207,10 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             operator = '*'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num1 = random.randint(1000, 9999)
-            num2 = random.randint(10, 99)
+         #   num1 = random.randint(1000, 9999)
+            result = random.randint(1,100)
+            num2 = random.randint(1, 100)
+            num1=num2*result
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
     elif grade == 9:
@@ -228,6 +234,7 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             num2 = round(random.uniform(0.01, 10), max_decimal_places)
             result = round(random.uniform(0.01, 100), max_decimal_places)
             num1 = result * num2
+            num1 = round(num1,3)
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
     elif grade == 10:
@@ -238,8 +245,10 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             operator = '*'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num1 = round(random.uniform(0.01, 100), max_decimal_places)
-            num2 = round(random.uniform(0.01, num1), max_decimal_places)
+            num2 = round(random.uniform(0.01, 10), max_decimal_places)
+            result = round(random.uniform(0.01, 100), max_decimal_places)
+            num1 = result * num2
+            num1 = round(num1, 3)
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
@@ -248,43 +257,22 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             operator = '*'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num1 = round(random.uniform(0.01, 100), max_decimal_places)
-            num2 = round(random.uniform(0.01, num1), max_decimal_places)
+            num2 = round(random.uniform(0.01, 10), max_decimal_places)
+            result = round(random.uniform(0.01, 100), max_decimal_places)
+            num1 = result * num2
+            num1 = round(num1, 3)
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
     elif grade == 11:
         # 六年级上
         for _ in range(y):
-            num1 = random.randint(1, 10)
-            num2 = random.randint(1, 10)
-            operator = '+'
-            problems.append(ArithmeticProblem(num1, num2, operator))
-        for _ in range(5):
-            num1 = random.randint(1, 10)
-            num2 = random.randint(1, num1)
-            operator = '-'
-            problems.append(ArithmeticProblem(num1, num2, operator))
-        for _ in range(y):
-            num1 = random.randint(1, 10)
-            num2 = random.randint(1, 10)
-            operator = '*'
-            problems.append(ArithmeticProblem(num1, num2, operator))
-        for _ in range(y):
-            num2 = random.randint(1, 10)
-            result = random.randint(1, 100)
-            num1 = result * num2
-            operator = '/'
-            problems.append(ArithmeticProblem(num1, num2, operator))
-    elif grade == 12:
-        # 六年级下
-        for _ in range(y):
-            num1 = round(random.uniform(-100, 100), max_decimal_places)
-            num2 = round(random.uniform(-100, 100), max_decimal_places)
+            num1 = round(random.uniform(-5000, 5000), max_decimal_places)
+            num2 = round(random.uniform(-2000, 2000), max_decimal_places)
             operator = '+'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
-            num1 = round(random.uniform(-100, 100), max_decimal_places)
-            num2 = round(random.uniform(-100, num1), max_decimal_places)
+            num1 = round(random.uniform(-5000, 5000), max_decimal_places)
+            num2 = round(random.uniform(-2000, 2000), max_decimal_places)
             operator = '-'
             problems.append(ArithmeticProblem(num1, num2, operator))
         for _ in range(y):
@@ -296,14 +284,31 @@ def generate_arithmetic_problems(grade,y,max_decimal_places=None):
             num2 = round(random.uniform(-10, 10), max_decimal_places)
             result = round(random.uniform(-100, 100), max_decimal_places)
             num1 = result * num2
+            num1 = round(num1, 3)
+            operator = '/'
+            problems.append(ArithmeticProblem(num1, num2, operator))
+    elif grade == 12:
+        # 六年级下
+        for _ in range(y):
+            num1 = round(random.uniform(-5000, 5000), max_decimal_places)
+            num2 = round(random.uniform(-2000, 2000), max_decimal_places)
+            operator = '+'
+            problems.append(ArithmeticProblem(num1, num2, operator))
+        for _ in range(y):
+            num1 = round(random.uniform(-5000, 5000), max_decimal_places)
+            num2 = round(random.uniform(-2000, 2000), max_decimal_places)
+            operator = '-'
+            problems.append(ArithmeticProblem(num1, num2, operator))
+        for _ in range(y):
+            num1 = round(random.uniform(-100, 100), max_decimal_places)
+            num2 = round(random.uniform(-20, 20), max_decimal_places)
+            operator = '*'
+            problems.append(ArithmeticProblem(num1, num2, operator))
+        for _ in range(y):
+            num2 = round(random.uniform(-20, 20), max_decimal_places)
+            result = round(random.uniform(-200, 200), max_decimal_places)
+            num1 = result * num2
+            num1 = round(num1, 3)
             operator = '/'
             problems.append(ArithmeticProblem(num1, num2, operator))
     return problems
-
-# 测试生成六年级下的算式
-grade = 12             #年级，从1到6共12个等级，分上下册。
-num_problems = 5       #4倍的num_problems，为生成的算式总数。
-max_decimal_places = 1 #以结果和除数的乘积作为被除，从而生成除法运算，这个是除数和结果的最大小数位数。
-problems = generate_arithmetic_problems(grade, num_problems, max_decimal_places)
-for i, problem in enumerate(problems):
-    print(f"题目 {i+1}: {problem.num1} {problem.operator} {problem.num2} = {problem.answer}")
